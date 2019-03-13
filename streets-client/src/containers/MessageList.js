@@ -4,6 +4,7 @@ import { fetchMessages, removeMessage } from "../store/actions/messages";
 import MessageItem from "../components/MessageItem";
 
 class MessageList extends Component {
+  
   componentDidMount() {
     this.props.fetchMessages();
   }
