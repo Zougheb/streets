@@ -18,11 +18,15 @@ exports.createMessage = async function(req, res, next) {
       username: true,
       profileImageUrl: true
     });
-    return res.status(200).json(foundMessage);
+    console.log(foundMessage)
+    return res.status(200).json({
+      message: "success"
+    });
   } catch (err) {
     return next(err);
   }
 };
+
 
 // GET - /api/users/:id/messages/:message_id
 exports.getMessage = async function(req, res, next) {
