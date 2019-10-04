@@ -3,7 +3,9 @@ const router = express.Router({ mergeParams: true });
 
 const {
   createMessage,
-  getMessage,
+  // getAllMessages,
+  getSingleMessage,
+  updateSingleMessage,
   deleteMessage
 } = require("../handlers/messages");
 
@@ -13,7 +15,8 @@ router.route("/").post(createMessage);
 // prefix - /api/users/:id/messages/:message_id
 router
   .route("/:message_id")
-  .get(getMessage)
+  .get(getSingleMessage)
+  .put(updateSingleMessage)
   .delete(deleteMessage);
 
 module.exports = router;

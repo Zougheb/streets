@@ -34,5 +34,20 @@ messageSchema.pre("remove", async function(next) {
   }
 });
 
+// messageSchema.pre("update", async function (next) {
+//   try {
+//     // find a user
+//     let user = await User.findById(this.user);
+//     // remove the id of the message from their messages list
+//     user.messages.update(this.id);
+//     // save that user
+//     await user.save();
+//     // return next
+//     return next();
+//   } catch (err) {
+//     return next(err);
+//   }
+// })
+
 const Message = mongoose.model("Message", messageSchema);
 module.exports = Message;

@@ -7,6 +7,8 @@ import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import withAuth from "../hocs/withAuth";
 import MessageForm from "../containers/MessageForm";
+import Profile from "../containers/UserProfile";
+
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
@@ -55,12 +57,17 @@ const Main = props => {
           path="/users/:id/messages/new"
           component={withAuth(MessageForm)}
         />
+        <Route
+          path="/users/:id"
+          component={Profile}
+        />
       </Switch>
     </div>
   );
 };
 
 function mapStateToProps(state) {
+  console.log(state.currentUser)
   return {
     currentUser: state.currentUser,
     errors: state.errors

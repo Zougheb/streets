@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 const authRoutes = require("./routes/auth");
 const messagesRoutes = require("./routes/messages");
+const usersRoutes = require("./routes/user");
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 const db = require("./models");
 const PORT = 8080;
@@ -14,12 +15,24 @@ const PORT = 8080;
 app.use(cors());
 app.use(bodyParser.json());
 
+
+app.get('/', function (req, res) {
+  res.send('hello world!!')
+})
+
 app.use("/api/auth", authRoutes);
 app.use(
   "/api/users/:id/messages",
   loginRequired,
   ensureCorrectUser,
   messagesRoutes
+);
+
+app.use(
+  "/api/users",
+  // loginRequired,
+  // ensureCorrectUser,
+  usersRoutes
 );
 
 app.get("/api/messages", loginRequired, async function(req, res, next) {
@@ -35,6 +48,7 @@ app.get("/api/messages", loginRequired, async function(req, res, next) {
     return next(err);
   }
 });
+
 
 app.use(function(req, res, next) {
   let err = new Error("Not Found");

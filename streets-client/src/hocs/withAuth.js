@@ -1,3 +1,5 @@
+// HOC is going to handle the validation to make sure that a user is 
+// logged in before the see that component
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
